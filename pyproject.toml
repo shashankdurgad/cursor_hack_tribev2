@@ -36,6 +36,9 @@ dependencies = [
 
     # Utilities
     "Pillow>=10.0.0",        # PNG export fallback
+    
+    # Dashboard
+    "streamlit>=1.35.0",
 ]
 
 [project.scripts]
