@@ -1,0 +1,20 @@
+# Model weights cache (can be many GB)
+cache/
+
+# Generated brain heatmap PNGs
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+
+# Nilearn data cache
+~/nilearn_data/
+
+# Environment
+.env

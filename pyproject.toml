@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "digital-empathy"
+version = "0.1.0"
+description = "MCP server that exposes Meta TRIBE v2 as a cognitive friction analyzer for UI recordings"
+requires-python = ">=3.11"
+dependencies = [
+    # MCP server framework (official SDK, includes FastMCP)
+    "mcp[cli]>=1.0.0",
+
+    # Deep learning — Apple Silicon MPS backend
+    "torch>=2.3.0",
+    "torchvision>=0.18.0",
+    "torchaudio>=2.3.0",
+
+    # Hugging Face ecosystem (TRIBE v2 weights + sub-models)
+    "transformers>=4.40.0",
+    "huggingface-hub>=0.22.0",
+
+    # TRIBE v2 is installed from source (see README); these are its deps
+    "pandas>=2.0.0",
+    "numpy>=1.26.0",
+
+    # Brain atlas & neuroimaging — for fsaverage5 ROI masks
+    "nilearn>=0.10.0",
+    "nibabel>=5.0.0",
+
+    # Visualization — brain surface heatmaps
+    "matplotlib>=3.8.0",
+    "pyvista>=0.43.0",       # 3-D brain mesh rendering (used by TRIBE's PlotBrainPyvista)
+    "pyvistaqt>=0.11.0",     # off-screen rendering backend for pyvista
+    "trame>=3.0.0",          # required by pyvista off-screen
+
+    # Utilities
+    "Pillow>=10.0.0",        # PNG export fallback
+]
+
+[project.scripts]
+digital-empathy = "digital_empathy.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/digital_empathy"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
